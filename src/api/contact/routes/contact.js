@@ -11,6 +11,11 @@ module.exports = {
       "method": "GET",
       "path": "/contacts/:slug",
       "handler": "contact.findOne"
+    },
+    {
+      method: "POST",
+      path: "/contacts",
+      handler: "contact.create"
     }
   ]
 };
