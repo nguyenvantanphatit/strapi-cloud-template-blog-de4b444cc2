@@ -1,9 +1,16 @@
-'use strict';
+"use strict";
 
-/**
- * contact router
- */
-
-const { createCoreRouter } = require('@strapi/strapi').factories;
-
-module.exports = createCoreRouter('api::contact.contact');
+module.exports = {
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/contacts",
+      "handler": "contact.find"
+    },
+    {
+      "method": "GET",
+      "path": "/contacts/:slug",
+      "handler": "contact.findOne"
+    }
+  ]
+};
