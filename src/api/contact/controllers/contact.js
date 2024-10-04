@@ -10,7 +10,7 @@ module.exports = createCoreController('api::contact.contact', ({ strapi }) => ({
   async findOne(ctx) {
     const { slug } = ctx.params;
 
-    const entity = await strapi.db.query('api::contact.contact').findOne({
+    const entity = await strapi.query('api::contact.contact').findOne({
       where: { slug },
       populate: { deep: 4 },
     });
@@ -36,7 +36,7 @@ module.exports = createCoreController('api::contact.contact', ({ strapi }) => ({
     try {
       const { name, email, phone, message, status_contact } = ctx.request.body;
 
-      const newContact = await strapi.db.query('api::contact.contact').create({
+      const newContact = await strapi.query('api::contact.contact').create({
         data: {
           name,
           email,
