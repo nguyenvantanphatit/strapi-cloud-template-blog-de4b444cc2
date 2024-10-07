@@ -31,12 +31,15 @@ module.exports = createCoreController('api::contact.contact', ({ strapi }) => ({
 
     return { data, meta };
   },
-  
+
   async create(ctx) {
     try {
       const { name, email, phone, message, status_contact } = ctx.request.body;
 
-      const newContact = await strapi.query('api::contact.contact').create({
+      if (!name || !email || !phone || !message) {
+        return ctx.badRequest('Missing required fields');
+      }
+      const newContact = await strapi.entityService.create('api::contact.contact', {
         data: {
           name,
           email,
@@ -47,11 +50,12 @@ module.exports = createCoreController('api::contact.contact', ({ strapi }) => ({
       });
 
       const sanitizedEntity = await this.sanitizeOutput(newContact, ctx);
-
       return this.transformResponse(sanitizedEntity);
+
     } catch (err) {
       strapi.log.error('Failed to create contact', err);
       return ctx.badRequest('Unable to create contact');
     }
   },
+
 }));
