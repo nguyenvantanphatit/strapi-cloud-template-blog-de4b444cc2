@@ -31,6 +31,11 @@
     "status_contact": {
       "type": "boolean",
       "default": false
+    },
+    "image": {
+      "type": "media", 
+      "multiple": false, 
+      "required": false
     }
   }
 }

@@ -630,6 +630,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     message: Schema.Attribute.Text;
     status_contact: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
+    image: Schema.Attribute.Media;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
