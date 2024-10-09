@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "upload_tests",
+  "info": {
+    "singularName": "upload-test",
+    "pluralName": "upload-tests",
+    "displayName": "uploadTest"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
