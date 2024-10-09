@@ -729,6 +729,35 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiUploadContactUploadContact
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'upload_contacts';
+  info: {
+    singularName: 'upload-contact';
+    pluralName: 'upload-contacts';
+    displayName: 'UploadContact';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::upload-contact.upload-contact'
+    >;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -1112,6 +1141,7 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::product.product': ApiProductProduct;
       'api::question.question': ApiQuestionQuestion;
+      'api::upload-contact.upload-contact': ApiUploadContactUploadContact;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;
